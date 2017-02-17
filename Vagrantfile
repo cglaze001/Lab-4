@@ -1,25 +1,42 @@
-Vagrant.configure("2") do |config|
- config.vm.define "box1" do |box1|
 
-         box1.vm.box="ubuntu/trusty64"
-
-         box1.vm.network :forwarded_port, guest: 22, host: 10122, id: "ssh"
-
-         box1.vm.network :private_network, ip: "192.168.56.101"
-
- end
-
-  config.vm.define "box2" do |box2|
-
-         box2.vm.box="scotch/box"
-
-         box2.vm.network :forwarded_port, guest: 22, host: 10222, id: "ssh"
-
-         box2.vm.network :private_network, ip: "192.168.56.102"
+!/bin/bash
+for i in `cat /var/tmp/userlist.txt`; do
+echo $i
+echo $i 12345 | sudo password -s $i
+echo; echo "user password changed!"
+done
+##echo -e "password\password" | sudo chpasswd $i
+##usermod -L $i
+##chage -d 0 $i
+##usermod -U $i
+##done
 
 
- end
+------------------------------------------------------------------
+#8
+text file called /var/tmp/userlist
+
+Bobby
+Kyle
+Sam
+Tania
+
+#!/bin/bash
+for i in `cat /var/tmp/userlist`; do
+echo -e "hunter:htc" | sudo chpasswd $i
+done
+
+------------------------------------------------------------------
+#6
+
+#!/bin/bash
+while [ true ] ;do
+used=`free -m |awk '{print $5}'`
+
+if [ $used -lt 1000 ] && [ $used -gt 800 ]; then
+echo "Free memory is below 1000MB. Possible memory leak!!!" | /bin/mail -s "HIGH MEMORY ALERT!!!" user@mydomain.com
 
 
-#Thisi Chris' Change
-	
+fi
+
+done       --------------------
