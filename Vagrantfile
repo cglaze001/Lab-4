@@ -1,18 +1,17 @@
 
 
 
-!/bin/bash
+!/bin/bash ----> (it should've been, "#!/bin/bash") 
 for i in `cat /var/tmp/userlist.txt`; do
 echo $i
 echo $i 12345 | sudo password -s $i
 echo; echo "user password changed!"
-done
+done           -----> (tested this in linux, all i got were, "sudo : password : commmand not found" and "user password change")  
 ##echo -e "password\password" | sudo chpasswd $i
 ##usermod -L $i
 ##chage -d 0 $i
 ##usermod -U $i
 ##done
-
 
 ------------------------------------------------------------------
 #8
@@ -37,6 +36,8 @@ used=`free -m |awk '{print $5}'`
 
 if [ $used -lt 1000 ] && [ $used -gt 800 ]; then
 echo "Free memory is below 1000MB. Possible memory leak!!!" | /bin/mail -s "HIGH MEMORY ALERT!!!" user@mydomain.com
+
+------------> (Looks good )
 
 
 fi
